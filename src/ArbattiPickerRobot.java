@@ -10,6 +10,7 @@ import becker.robots.RobotSE;
  */
 public class ArbattiPickerRobot extends RobotSE {
 
+    // This is a change for the better
     boolean moveUp = false, firstTime = true, finished = false;
     private int mode;
     private int doorX, doorY;
