@@ -10,7 +10,6 @@ import becker.robots.RobotSE;
  */
 public class ArbattiPickerRobot extends RobotSE {
 
-    //private final int chairCount = 0;
     boolean moveUp = false, firstTime = true, finished = false;
     private int mode;
     private int doorX, doorY;
