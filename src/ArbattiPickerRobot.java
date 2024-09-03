@@ -84,8 +84,8 @@ public class ArbattiPickerRobot extends RobotSE {
         if (this.frontIsClear() && this.isFacingSouth()) {
             this.mode = 1;
             this.doorY = this.getStreet() - 1;
-            this.doorX = this.getAvenue();
-        } else {
+        }
+        else {
             this.turnRight();
 
             // Moves as long as the front is clear and the robot is touching a wall (hasn't found door)
@@ -96,19 +96,21 @@ public class ArbattiPickerRobot extends RobotSE {
             // Checks to see if the robot is facing west, the front is clear, and it has found the door
             if (this.isFacingWest() && this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) == 0) {
                 this.mode = 2;
-                this.doorY = this.getStreet();
-                this.doorX = this.getAvenue();
+                //this.doorY = this.getStreet();
+                //this.doorX = this.getAvenue();
             }
 
             // Checks to see if the door has spawned on the left-most corner of the cafeteria
             else if (this.isFacingWest() && !this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) == 1) {
                 this.mode = 3;
-                this.doorY = this.getStreet();
-                this.doorX = this.getAvenue();
+                //this.doorY = this.getStreet();
+                //this.doorX = this.getAvenue();
 
             }
+            this.doorY = this.getStreet();
 
         }
+        this.doorX = this.getAvenue();
 
     }
 
@@ -117,17 +119,12 @@ public class ArbattiPickerRobot extends RobotSE {
      */
     private void faceNorth() {
 
-        // Checks if facing West
         if (this.isFacingWest()) {
             this.turnRight();
         }
-
-        //Checks if facing South
         else if (this.isFacingSouth()) {
             this.turnAround();
         }
-
-        //Checks if facing East
         else if (this.isFacingEast()) {
             this.turnLeft();
         }
@@ -138,17 +135,12 @@ public class ArbattiPickerRobot extends RobotSE {
      */
     private void faceEast() {
 
-        // Checks to see if the robot is facing the North direction
         if (this.isFacingNorth()) {
             this.turnRight();
         }
-
-        // Checks to see if the robot is facing the West direction
         else if (this.isFacingWest()) {
             this.turnAround();
         }
-
-        // Checks to see if the robot is facing the South direction
         else if (this.isFacingSouth()) {
             this.turnLeft();
         }
@@ -161,9 +153,11 @@ public class ArbattiPickerRobot extends RobotSE {
 
         if (this.isFacingNorth()) {
             this.turnAround();
-        } else if (this.isFacingWest()) {
+        }
+        else if (this.isFacingWest()) {
             this.turnLeft();
-        } else if (this.isFacingEast()) {
+        }
+        else if (this.isFacingEast()) {
             this.turnRight();
         }
     }
@@ -175,9 +169,11 @@ public class ArbattiPickerRobot extends RobotSE {
 
         if (this.isFacingNorth()) {
             this.turnLeft();
-        } else if (this.isFacingEast()) {
+        }
+        else if (this.isFacingEast()) {
             this.turnAround();
-        } else if (this.isFacingSouth()) {
+        }
+        else if (this.isFacingSouth()) {
             this.turnRight();
         }
     }
@@ -263,7 +259,8 @@ public class ArbattiPickerRobot extends RobotSE {
 
             if (this.frontIsClear()) {
                 this.move();
-            } else {
+            }
+            else {
                 this.finished = true;
                 this.goToLocation(this.getStreet(), this.getAvenue(), this.doorY + 1, this.doorX);
                 this.goToLocation(this.getStreet(), this.getAvenue(), this.storageY - 1, this.storageX);
@@ -272,7 +269,8 @@ public class ArbattiPickerRobot extends RobotSE {
 
             this.offsetY++;
             this.moveUp = false;
-        } else {
+        }
+        else {
             this.pickUpSafely();
         }
 
