@@ -96,15 +96,11 @@ public class ArbattiPickerRobot extends RobotSE {
             // Checks to see if the robot is facing west, the front is clear, and it has found the door
             if (this.isFacingWest() && this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) == 0) {
                 this.mode = 2;
-                //this.doorY = this.getStreet();
-                //this.doorX = this.getAvenue();
             }
 
             // Checks to see if the door has spawned on the left-most corner of the cafeteria
             else if (this.isFacingWest() && !this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) == 1) {
                 this.mode = 3;
-                //this.doorY = this.getStreet();
-                //this.doorX = this.getAvenue();
 
             }
             this.doorY = this.getStreet();
@@ -291,7 +287,8 @@ public class ArbattiPickerRobot extends RobotSE {
                 this.turnRight();
                 this.frontMove();
                 this.firstTime = false;
-            } else {
+            }
+            else {
                 this.goToLocation(this.doorY, this.doorX, this.storageY, storageX);
             }
 
@@ -331,7 +328,8 @@ public class ArbattiPickerRobot extends RobotSE {
         // Checks to see which direction the robot has to orient
         if (returnX > 0) {
             this.faceEast();
-        } else if (returnX < 0) {
+        }
+        else if (returnX < 0) {
             this.faceWest();
         }
 
@@ -343,7 +341,8 @@ public class ArbattiPickerRobot extends RobotSE {
         // Checks the direction the robot should orient
         if (returnY < 0) {
             this.faceNorth();
-        } else if (returnY > 0) {
+        }
+        else if (returnY > 0) {
             this.faceSouth();
         }
 
@@ -363,9 +362,11 @@ public class ArbattiPickerRobot extends RobotSE {
         // Checks which door type the cafe has
         if (type == 1) {
             caseOneThreePick('W');
-        } else if (type == 2) {
+        }
+        else if (type == 2) {
             caseTwoPick();
-        } else {
+        }
+        else {
             caseOneThreePick('E');
         }
     }
@@ -405,7 +406,8 @@ public class ArbattiPickerRobot extends RobotSE {
             // Sees if the robot can pick something up
             if (this.frontIsClear()) {
                 this.pickUpSafely();
-            } else {
+            }
+            else {
                 this.advanceStreet();
             }
 
