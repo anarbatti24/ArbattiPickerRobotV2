@@ -32,14 +32,9 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description The "main" method to get the robot to do the whole sequence
      */
     public void collectChairs() {
-
         this.findDoor();
-
         this.findStorage(this.mode);
-
-        //.out.println("We are in this part");
         this.goToLocation(this.storageY, this.storageX, this.doorY, this.doorX);
-
         this.pickChairs(this.mode);
     }
 
@@ -47,7 +42,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description The method to find the door
      */
     private void findDoor() {
-
         this.findEastWall();
         this.findSouthWall();
         this.locateDoor();
@@ -57,7 +51,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to find the East wall of the gymnasium
      */
     private void findEastWall() {
-
         this.faceEast();
         this.frontMove();
     }
@@ -66,9 +59,7 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to find the South wall
      */
     private void findSouthWall() {
-
         this.turnRight();
-
         // Makes sure the robot stays within the cafeteria should the door be on the rightmost corner of the wall
         while (this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) >= 1) {
             this.move();
@@ -79,7 +70,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to locate the door and classify the door's location
      */
     private void locateDoor() {
-
         // Sees if the door is on the rightmost corner of the cafeteria
         if (this.frontIsClear() && this.isFacingSouth()) {
             this.mode = 1;
@@ -103,6 +93,20 @@ public class ArbattiPickerRobot extends RobotSE {
                 this.mode = 3;
 
             }
+
+
+//            if (this.isFacingWest()) {
+//                if (this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) == 0) {
+//                    this.mode = 2;
+//                }
+//                else if (!this.frontIsClear() && this.getIntersection().countSims(IPredicate.anyWall) == 1) {
+//                    this.mode = 3;
+//                }
+//            }
+
+
+
+
             this.doorY = this.getStreet();
 
         }
@@ -114,7 +118,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to face North
      */
     private void faceNorth() {
-
         if (this.isFacingWest()) {
             this.turnRight();
         }
@@ -130,7 +133,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Makes the robot face the East direction
      */
     private void faceEast() {
-
         if (this.isFacingNorth()) {
             this.turnRight();
         }
@@ -146,7 +148,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to face South
      */
     private void faceSouth() {
-
         if (this.isFacingNorth()) {
             this.turnAround();
         }
@@ -162,7 +163,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to face West
      */
     private void faceWest() {
-
         if (this.isFacingNorth()) {
             this.turnLeft();
         }
@@ -178,7 +178,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Moves the robot forward as long as the way is clear
      */
     public void frontMove() {
-
         while (this.frontIsClear()) {
             this.move();
         }
@@ -188,7 +187,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to safely pick something up
      */
     private void pickUpSafely() {
-
         boolean storageXUpdate = false;
 
         //Checks to make sure the robot can pick something and that it is not already holding anything
@@ -234,7 +232,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to see if the robot should go to the next street
      */
     private void advanceStreet() {
-
         // Checks if the robot has completed clearing the chairs
         if (!this.frontIsClear() && this.getIntersection().countSims(IPredicate.aThing) == 1 && this.offsetY != 0 && this.getIntersection().countSims(IPredicate.aWall) == 2) {
             this.finished = true;
@@ -277,7 +274,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Checks to see which type of door location is it based on the previous method and does the according action
      */
     private void findStorage(int type) {
-
         //Checks whether the door is on the right-most part of the cafeteria
         if (type == 1) {
 
@@ -287,9 +283,6 @@ public class ArbattiPickerRobot extends RobotSE {
                 this.turnRight();
                 this.frontMove();
                 this.firstTime = false;
-            }
-            else {
-                this.goToLocation(this.doorY, this.doorX, this.storageY, storageX);
             }
 
         }
@@ -321,7 +314,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Performs the calculations to make the robot return to the door
      */
     private void goToLocation(int startingY, int startingX, int finalY, int finalX) {
-
         int returnY = finalY - startingY;
         int returnX = finalX - startingX;
 
@@ -358,7 +350,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description The method to pick up the chairs and stack them
      */
     private void pickChairs(int type) {
-
         // Checks which door type the cafe has
         if (type == 1) {
             caseOneThreePick('W');
@@ -394,7 +385,8 @@ public class ArbattiPickerRobot extends RobotSE {
             // Checks which direction the robot has to orient based on the door spawn
             if (direction == 'W') {
                 this.faceWest();
-            } else if (direction == 'E') {
+            }
+            else if (direction == 'E') {
                 this.faceEast();
             }
 
@@ -424,7 +416,6 @@ public class ArbattiPickerRobot extends RobotSE {
      * @description Method to pickup chairs if it is Case 2
      */
     private void caseTwoPick() {
-
         boolean running = true;
         boolean clearLeft = true;
         boolean clearRight = false;
@@ -463,7 +454,8 @@ public class ArbattiPickerRobot extends RobotSE {
                     clearLeft = false;
                     clearRight = true;
                     this.goToLocation(this.getStreet(), this.getAvenue(), this.doorY, this.doorX);
-                } else {
+                }
+                else {
                     clearLeft = false;
                     clearRight = true;
                     this.moveUp = false;
