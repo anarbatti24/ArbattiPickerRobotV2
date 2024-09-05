@@ -27,14 +27,14 @@ public class Main {
 
         int horizontalWall = 10;
         int verticalWall = 10;
-        //int doorSpawn = 5;
+        int doorSpawn = 8;
         int wallSpawnX = 0, wallSpawnY = 0, storageDistance = 2;
 
 
         int robotX = rand.nextInt(wallSpawnX, wallSpawnX + horizontalWall);
         int robotY = rand.nextInt(wallSpawnY, wallSpawnY + verticalWall);
 
-        int doorSpawn = rand.nextInt(wallSpawnX, wallSpawnX + horizontalWall);
+        //int doorSpawn = rand.nextInt(wallSpawnX, wallSpawnX + horizontalWall);
         //int thingSpawnCount = rand.nextInt(horizontalWall * MULTIPLIER-1, horizontalWall * MULTIPLIER);
         int thingSpawnCount = horizontalWall * MULTIPLIER;
 
