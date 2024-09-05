@@ -492,7 +492,8 @@ public class ArbattiPickerRobot extends RobotSE {
                 // Checks if the robot is at the right end of the cafe and there's more to pickup
                 if (this.frontIsClear() || (!this.frontIsClear() && this.getIntersection().countSims(IPredicate.aThing) > 1)) {
                     this.pickUpSafely();
-                } else {
+                }
+                else {
                     clearLeft = true;
                     clearRight = false;
                     this.advanceStreet();
